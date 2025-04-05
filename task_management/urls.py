@@ -17,12 +17,11 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
-from django.views.generic import RedirectView
+from .views import landing_page
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/auth/', include('users.urls')),
     path('api/', include('api.urls')),
-    # Add this line to redirect from root to /api/
-    path('', RedirectView.as_view(url='/api/', permanent=False)),
+    path('', landing_page, name='landing'),  # User-friendly landing page
 ]
